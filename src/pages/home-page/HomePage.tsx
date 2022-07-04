@@ -49,6 +49,13 @@ const HomePage: React.FC = () => {
             }
 
             {
+                error &&
+                (
+                    <p>Error, try again later</p>
+                )
+            }
+
+            {
                 books.length > 0 && (
                     <div className="btn-wrapper">
                         <button className={'btn btn-primary'} onClick={onClick}>Load more</button>
