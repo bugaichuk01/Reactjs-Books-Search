@@ -1,0 +1,18 @@
+.select {
+  color: #fff;
+  font-weight: 400;
+  min-width: 195px;
+  display: flex;
+  justify-content: space-between;
+  .select-item {
+    outline: none;
+    color: #6f6f6f;
+  }
+}
+
+
+@media  (max-width: 1360px) {
+  .select {
+    margin: 10px;
+  }
+}
