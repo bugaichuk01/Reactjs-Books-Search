@@ -16,7 +16,6 @@ function BookPage() {
     useEffect(() => {
         //@ts-ignore
         dispatch(fetch(params.book))
-
     }, [])
 
     return (

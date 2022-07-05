@@ -5,7 +5,6 @@ import {Route, Routes} from "react-router-dom";
 import BookPage from "./pages/book-page";
 
 const App = () => {
-
     return (
         <div className="App">
             <Header />
