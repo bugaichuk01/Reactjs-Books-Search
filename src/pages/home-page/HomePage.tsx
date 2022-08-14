@@ -1,21 +1,19 @@
 import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {BooksDispatch, IBooks, IBooksState} from '../../types/Books'
-import {RootState} from "../../store/store";
-import {fetch, loadMoreBooks} from "../../store/actions/booksActions";
-import {ISearch} from "../../types/Search";
+import {IBooks, IBooksState} from '../../types/Books'
 import Book from "../../components/book";
 import './HomePage.scss';
 import loader from '../../images/loader.gif';
+import {useTypedSelector} from "../../_hooks/useTypedSelector";
+import {useActions} from "../../_hooks/useActions";
 
 const HomePage: React.FC = () => {
-    const {books, loading, error, totalItems}: IBooksState = useSelector((state: RootState) => state?.booksReducer)
-    const searchData: ISearch = useSelector((state: RootState) => state?.searchReducer)
+    const {books, loading, error, totalItems}: IBooksState = useTypedSelector(state => state?.booksReducer)
+    const searchData = useTypedSelector(state  => state?.searchReducer)
 
-    const dispatch: BooksDispatch = useDispatch();
+    const {fetch, loadMoreBooks} = useActions();
 
     const onClick: React.MouseEventHandler<HTMLButtonElement> = () => {
-        dispatch(fetch({...searchData, startIndex: searchData.startIndex + 30}, loadMoreBooks))
+        fetch({...searchData, startIndex: searchData.startIndex + 30}, loadMoreBooks)
     }
 
 
