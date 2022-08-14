@@ -1,21 +1,20 @@
 import React, {useEffect} from 'react';
-import {fetch} from "../../store/actions/bookItemActions";
 import {useParams} from "react-router";
-import {useDispatch, useSelector} from "react-redux";
-import {BookDispatch, IBook} from "../../types/Book";
-import {RootState} from "../../store/store";
+import {IBook} from "../../types/Book";
 import './BookPage.scss';
 import loader from "../../images/loader.gif";
+import {useActions} from "../../_hooks/useActions";
+import {useTypedSelector} from "../../_hooks/useTypedSelector";
+
 
 function BookPage() {
     const params = useParams()
-    const dispatch: BookDispatch = useDispatch();
-    const store = useSelector((state: RootState) => state.bookItemReducer)
+    const {fetchBook} = useActions();
+    const store = useTypedSelector(state => state.bookItemReducer)
     const {title, description, categories, authors, link, error, loading}: IBook = store;
 
     useEffect(() => {
-        //@ts-ignore
-        dispatch(fetch(params.book))
+        fetchBook(params.book)
     }, [])
 
     return (
