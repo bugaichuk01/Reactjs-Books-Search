@@ -6,7 +6,6 @@ import {
 } from "../../types/Search";
 
 export const searchText = (text: string): SearchActions => {
-    console.log('change')
     return {type: SET_SEARCH_TEXT, payload: text}
 }
 
