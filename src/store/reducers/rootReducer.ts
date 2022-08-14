@@ -8,3 +8,5 @@ export const rootReducer = combineReducers({
     searchReducer: searchReducer,
     bookItemReducer: bookItemReducer
 })
+
+export type RootState = ReturnType<typeof rootReducer>
