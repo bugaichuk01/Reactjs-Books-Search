@@ -1,19 +1,17 @@
 import React, {useEffect} from 'react';
 import './Select.scss';
 import {ISelect} from "../../../../types/Select";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../../store/store";
-import {fetch, fetchBooksSuccess} from "../../../../store/actions/booksActions";
-import {BooksDispatch} from "../../../../types/Books";
 import {useNavigate} from "react-router";
+import {useActions} from "../../../../_hooks/useActions";
+import {useTypedSelector} from "../../../../_hooks/useTypedSelector";
 
 const Select: React.FC<ISelect> = ({label, options, onSelectChange}) => {
-    const searchData = useSelector((state: RootState) => state?.searchReducer)
-    const dispatch: BooksDispatch = useDispatch();
+    const searchData = useTypedSelector(state => state?.searchReducer)
+    const {fetch, fetchBooksSuccess} = useActions();
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(fetch({...searchData}, fetchBooksSuccess))
+        fetch({...searchData}, fetchBooksSuccess)
     }, [searchData?.subject, searchData?.orderBy])
 
     const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
