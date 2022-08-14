@@ -3,7 +3,7 @@ import {
     FETCH_BOOKS,
     FETCH_BOOKS_ERROR,
     FETCH_BOOKS_SUCCESS,
-    IBooks, IBooksResponse,
+    IBooksResponse,
     IFetchBooksAction,
     IFetchBooksActionSuccess,
     IFetchBooksErrorAction,
@@ -12,12 +12,10 @@ import {
 } from "../../types/Books";
 import axios from "axios";
 import {Dispatch} from "react";
-import {ThunkAction} from "redux-thunk";
-import {AnyAction} from "redux";
 import {ISearch} from "../../types/Search";
 
 
-const _URI = 'https://www.googleapis.com/books/v1/volumes';
+const _URL = 'https://www.googleapis.com/books/v1/volumes';
 const _API = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export const fetchBooks = (): IFetchBooksAction => ({
@@ -39,16 +37,14 @@ export const loadMoreBooks = (payload: IBooksResponse): ILoadMoreBooks => ({
     payload
 });
 
+export const fetch = (searchData: ISearch, action: Function) => {
+    return async (dispatch: Dispatch<BooksActions>) => {
+        const {q, subject, maxResults, startIndex, orderBy} = searchData;
+        const myString: string = subject === 'all' ? q : `${q}+subject:${subject}`
+        myString !== '' && dispatch(fetchBooks());
 
-export const fetch =
-    (searchData: ISearch, action: any): ThunkAction<void, IBooks[], unknown, AnyAction> =>
-        async (dispatch: Dispatch<BooksActions>) => {
-
-            const {q, subject, maxResults, startIndex, orderBy} = searchData;
-            const myString: string = subject === 'all' ? q : `${q}+subject:${subject}`
-            myString !== '' && dispatch(fetchBooks());
-
-            myString !== '' && await axios.get(`${_URI}?q=${myString}&startIndex=${startIndex}&maxResults=${maxResults}&orderBy=${orderBy}&key=${_API}`)
-                .then((data) => dispatch(action(data.data)))
-                .catch((error) => dispatch(fetchBooksError(error)));
-        }
+        myString !== '' && await axios.get(`${_URL}?q=${myString}&startIndex=${startIndex}&maxResults=${maxResults}&orderBy=${orderBy}&key=${_API}`)
+            .then((data) => dispatch(action(data.data)))
+            .catch((error) => dispatch(fetchBooksError(error)));
+    }
+}
