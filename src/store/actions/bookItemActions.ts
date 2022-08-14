@@ -2,7 +2,7 @@ import axios from "axios";
 import { Dispatch } from "react";
 import {
     BookActions,
-    FETCH_BOOK, FETCH_BOOK_ERROR, FETCH_BOOK_SUCCESS, IBook, IBookResponse,
+    FETCH_BOOK, FETCH_BOOK_ERROR, FETCH_BOOK_SUCCESS, IBookResponse,
     IFetchBookAction,
     IFetchBookActionSuccess,
     IFetchBookErrorAction
