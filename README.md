@@ -1,7 +1,6 @@
 # Reactjs Books Search
 
-[React App.pdf](https://github.com/bugaichuk01/Reactjs-Books-Search/files/9384778/React.App.pdf)
-![image](https://user-images.githubusercontent.com/90038064/177196526-6fd7a921-e06b-4259-8101-4273d660214a.png)
+![React App-1](https://user-images.githubusercontent.com/90038064/185690937-c8aa9801-ecd5-488e-8e76-0b273d5724e3.png)
 
 # Getting Started
 
