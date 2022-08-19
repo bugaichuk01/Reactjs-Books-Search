@@ -3,7 +3,7 @@ import {ISearch, SearchActions, SET_SEARCH_CATEGORY, SET_SEARCH_SORT, SET_SEARCH
 const initialState: ISearch = {
     q: '',
     subject: 'all',
-    maxResults: 30,
+    maxResults: 8,
     startIndex: 0,
     orderBy: 'Relevance'
 }
