@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
             {
                 books.length > 0 && (
                     <div className="btn-wrapper">
-                        <button className={'btn btn-primary'} onClick={onClick}>Load more</button>
+                        <button className={'btn btn-primary mb-4'} onClick={onClick}>Load more</button>
                     </div>
                 )
             }
